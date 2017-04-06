@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/cpm"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/test/unit"/>
+		<testFolder url="file://$MODULE_DIR$/test/integration"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/classes"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/gspcompile"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/plugin-build-classes"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/plugin-classes"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/plugin-provided-classes"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/resources"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/scriptCache"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/stage"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/work/tomcat"/>
+	</contentEntry>
+	<lib name="Grails User Library (cpm)" scope="COMPILE">
+		<srcroot url="jar://E:/api/grails-2.5.0/dist/grails-plugin-converters-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-domain-class-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-mimetypes-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-async-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-async-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-validation-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-url-mappings-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-servlets-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-services-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-log4j-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-encoder-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-codecs-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-logging-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-gsp-taglib-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-gsp-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-filters-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-i18n-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-bootstrap-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-spring-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-core-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-databinding-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-datasource-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-validation-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-controllers-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-sitemesh-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-fileupload-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-mvc-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-url-mappings-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-databinding-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-jsp-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-databinding-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-common-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-gsp-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-web-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-rest-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://$MAVEN_REPOSITORY$/com/fasterxml/classmate/1.0.0/classmate-1.0.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-sources.jar!/"/>
+		<srcroot bind="false" url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/18.0/guava-18.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-resources-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-project-api-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-test-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-plugin-testing-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-docs-2.5.0-sources.jar!/"/>
+		<srcroot bind="false" url="jar://E:/api/grails-2.5.0/dist/grails-scripts-2.5.0-sources.jar!/"/>
+		<relative-module-cls project-related="file://$PROJECT_DIR$/lib"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/commons-beanutils-1.8.3.jar!/"/>
+	</lib>
+</component>
