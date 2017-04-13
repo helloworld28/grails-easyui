@@ -20,6 +20,7 @@
 					{field:'id', title:'id', width:20},
 					{field:'name', title:'公司', width:250}
 				]]"/></td></tr>
+		<tr><td><label for="contractNo">合同编号</label></td><td>	<e:validatebox name="contractNo" /></td></tr>
 		<tr><td><label for="spareNumber"><g:message code="traceTable.spareNumber"/></label></td><td>	<e:validatebox name="spareNumber" /></td></tr>
 		<tr><td><label for="orderDate"><g:message code="traceTable.orderDate"/></label></td><td><e:datebox name="orderDate" width="100px"/></td></tr>
 		<tr><td><label for="orderAmount"><g:message code="traceTable.orderAmount"/></label></td><td><e:numberbox name="orderAmount"  width="100px" maxlenght="8"/></td></tr>

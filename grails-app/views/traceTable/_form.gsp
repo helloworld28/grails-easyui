@@ -27,13 +27,20 @@
 					{field:'id', title:'id', width:20},
 					{field:'name', title:'公司', width:250}
 				]]"/>
-		</div>												
+		</div>
+
+		<div class="row-input">
+			<label for="contractNo">合同编号</label>
+			<e:validatebox name="contractNo" />
+		</div>
 		
 		<div class="row-input">
 			<label for="spareNumber"><g:message code="traceTable.spareNumber"/></label>
 			<e:validatebox name="spareNumber" />
-		</div>												
-		
+		</div>
+
+
+
 		<div class="row-input">
 			<label for="orderDate"><g:message code="traceTable.orderDate"/></label>
 			<e:datebox name="orderDate" width="100px"/>

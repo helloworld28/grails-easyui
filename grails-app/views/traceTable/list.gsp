@@ -108,7 +108,8 @@
 				<e:column field="id" hidden="true" width="7"><g:message code="traceTable.id"/></e:column>  						
 				<e:column field="spare_number" sortable="true" width="7"><g:message code="traceTable.spare"/></e:column>
 				<e:column field="company_name" sortable="true" width="12"><g:message code="traceTable.company"/></e:column>
-				<e:column field="spareNumber" sortable="true" width="7"><g:message code="traceTable.spareNumber"/></e:column>  						
+				<e:column field="contractNo" sortable="true" width="12">合同编号</e:column>
+				<e:column field="spareNumber" sortable="true" width="7"><g:message code="traceTable.spareNumber"/></e:column>
 				<e:column field="orderDate" sortable="true" width="7"><g:message code="traceTable.orderDate"/></e:column>  						
 				<e:column field="orderAmount" sortable="true" width="7"><g:message code="traceTable.orderAmount"/></e:column>																				  												
 				<e:column field="orderPrice" sortable="true" width="7">报价</e:column>

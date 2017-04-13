@@ -7,6 +7,7 @@ class TraceTable {
     Integer orderAmount
     String spareNumber
     BigDecimal orderPrice
+    String contractNo
 
 
     //发货信息
