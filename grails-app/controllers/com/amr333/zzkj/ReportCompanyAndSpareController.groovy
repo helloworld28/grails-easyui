@@ -14,15 +14,17 @@ class ReportCompanyAndSpareController {
         def summaryList
         if(params.startTime){
             Spare spare = Spare.get(params.spare)
+            session.spareId = spare?.id
             Company company = Company.get(params.company)
-            session.companyName = company.name
+            session.companyName = company?.name
+            session.companyId = company?.id
             Date startTime = dateFormat.parse(params.startTime)
             Date endTime = params.endTime ? dateFormat.parse( params.endTime ) : new Date()
             List<TraceTable> traceTableList = TraceTable.findAllBySpareAndCompanyAndOrderDateBetween(spare, company,startTime, endTime)
 
             Map<String,Map> map = new HashMap<>()
             traceTableList.each {TraceTable traceTable ->
-                CompanyAndSpareSummary companyAndSpareSummary = new CompanyAndSpareSummary(traceTable.spareNumber, traceTable.orderAmount,traceTable.orderPrice)
+                CompanyAndSpareSummary companyAndSpareSummary = new CompanyAndSpareSummary(traceTable.spare.number, traceTable.orderAmount,traceTable.orderPrice)
                 map.put(traceTable.spareNumber, companyAndSpareSummary)
 
             }

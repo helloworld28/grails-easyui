@@ -16,6 +16,8 @@
     <script type="text/javascript" src="${resource(dir:'js',file:'jquery.easyui.min.js')}"></script>
     <script type="text/javascript" src="${resource( dir: "js", file: "easyui-scaffold.js")}"></script>
     <script type="text/javascript" src="${resource( dir: "js/locale", file: "easyui-scaffold-lang-en.js")}"></script>
+
+    <script type="text/javascript" src="${resource(dir:'js',file:'datagrid-filter.js')}"></script>
     <script type="text/javascript" src="${resource( dir: "js/locale", file: "easyui-lang-zh_CN.js")}"></script>
     <link rel="stylesheet" type="text/css" href="${resource( dir:"css", file: "easyui-scaffold.css")}"/>
 
@@ -32,7 +34,6 @@
         });
 
        $('#company').combogrid('setValue', '${params.company}');
-       $('#spare').combogrid('setValue', '${params.spare}');
 
         var height1 = $(window).height()-20;
         $("#main_layout").attr("style","width:100%;height:"+height1+"px");
@@ -83,23 +84,11 @@
 				]]"/></td>
                     <td>
 
-                        <e:combogrid
-                                name="spare"
-                                id="spare"
-                                width="150px"
-                                url="${createLink(controller: 'spare', action:'list.json')}"
-                                idField="id"
-                                textField="number"
-                                fitColumns="true"
-                                remote="true"
-                                required="true"
-                                columns="js:[[
-					{field:'id', title:'id', width:100},
-					{field:'number', title:'易损件型号', width:100},
-				]]"/>
+                        <input name="spare" id="spare" type="hidden" value="${params?.spare}" readonly="true"/>
+                        <input name="spare_Number" id="spareNumber"type="text" value="${params?.spare_Number}" readonly="true"/><a href="#" id="btn-choose">选择</a>
                     </td>
 
-                    <td width="80">时间起止</td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
+                    <td width="80">下单日期</td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
                     <td><input type="submit" id="btn-query" value="查询" /></td>
                     %{--  <td><input type="button" id="btn-export" value="导出结果" /></td>--}%
                 </tr></table>
@@ -149,5 +138,16 @@
 
 </div>
 
+<!--选择易损件页面-->
+<g:render template="../spare/spare"/>
+
+<script>
+
+    $(document).ready(function () {
+        $('#btn-choose').click(function () {
+            $('#win-chooseSpare').dialog('open');
+        });
+    });
+</script>
 </body>
 </html>

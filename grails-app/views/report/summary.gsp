@@ -39,7 +39,7 @@
 <div id="tb" class="scaffoldbar">
 
     <form action="<g:createLink controller="report" action="summary"/>" method="POST">
-    <table><tr><td width="80">时间起止</td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
+    <table><tr><td width="80">下单日期</td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
         <td><input type="submit" id="btn-query" value="查询" /></td>
         <td><input type="button" id="btn-export" value="导出结果" /></td>
     </tr></table>
@@ -54,7 +54,7 @@
             <thead>
             <tr>
 
-                <th data-options="field:'companyName',width:200">公司名</th>
+                <th data-options="field:'companyName',width:200">公司</th>
                 <th data-options="field:'amount', width:200">数量</th>
                 <th data-options="field:'totalPrice' ,width:200">总价</th>
             </tr>
@@ -62,7 +62,7 @@
             <tbody>
             <g:each in="${summaryList}" status="i" var="summary">
                 <tr>
-                    <td>${fieldValue(bean:summary, field:'companyName')}</td>
+                    <td><a href="#" onclick="showDetails('${fieldValue(bean:summary, field:'companyName')}')">${fieldValue(bean:summary, field:'companyName')}</a></td>
                     <td>${fieldValue(bean:summary, field:'amount')}</td>
                     <td>${fieldValue(bean:summary, field:'totalPrice')}</td>
                 </tr>
@@ -72,7 +72,7 @@
 
         </table>
 
-
-
+<!--明细跟踪表信息窗口-->
+<g:render template="list_trace_table"/>
 </body>
 </html>

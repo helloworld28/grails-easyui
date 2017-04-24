@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>·
+<html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="${resource(dir:'js/themes/default',file:'easyui.css')}" />
 		<link rel="stylesheet" type="text/css" href="${resource(dir:'js/themes',file:'icon.css')}" />
@@ -53,7 +53,7 @@
 				$('#grid').datagrid({
 					columns:[[
 						{field:'id',title:'id', hidden:true,width:80},
-						{field:'traceTable_company_name',title:'分公司', width:80},
+						{field:'traceTable_company_name',title:'分公司', width:150},
 						{field:'traceTable_spare_number',title:'易损件编号', width:80},
 						{field:'deliveryTime',title:'<g:message code="delivery.deliveryTime"/>', width:80},
 						{field:'deliveryNumber',title:'<g:message code="delivery.deliveryNumber"/>', width:80},

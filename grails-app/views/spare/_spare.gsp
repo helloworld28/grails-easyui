@@ -1,7 +1,7 @@
 
 
 <div  class="easyui-dialog" id="win-chooseSpare" title="选择易损件" width="700px"  style="width:700px;height:500px;padding:5px"height="200px" closed="true"
-		  maximizable="false" minimizable="false" collapsible="false" modal="true"
+		  maximizable="true" minimizable="false" collapsible="false" modal="true"
 data-options="buttons: [{
 					text:'Ok',
 					iconCls:'icon-ok',
@@ -22,7 +22,7 @@ data-options="buttons: [{
 				},{
 					text:'Cancel',
 					handler:function(){
-						alert('cancel');;
+						$('#win-chooseSpare').dialog('close');
 					}
 				}]">
 		<e:datagrid id="grid-spare" idField="id" fit="true" fitColumns="true" singleSelect="true"

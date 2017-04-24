@@ -56,7 +56,7 @@
 					{field:'name', title:'分公司', width:250}
 				]]"/></td>
 
-        <td width="80">时间起止</td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
+        <td width="80">下单日期</td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
         <td><input type="submit" id="btn-query" value="查询" /></td>
         <td><input type="button" id="btn-export" value="导出结果" /></td>
     </tr></table>
@@ -64,7 +64,7 @@
 </div>
 
 <br>
-        <lable>${session.companyName}总数量：${totalAmount}, 总价：${totalPrice}</lable>
+        <lable>${session.companyName} 总数量：${totalAmount}, 总价：${totalPrice}</lable>
         <table id="table-result" style="width:auto;height:auto;border:1px solid #ccc;">
             <thead>
             <tr>
@@ -77,7 +77,7 @@
             <tbody>
             <g:each in="${summaryList}" status="i" var="summary">
                 <tr>
-                    <td>${fieldValue(bean:summary, field:'companyName')}</td>
+                    <td><a href="#" onclick="showDetailsByCompanyIdAndSpareNumber('${session.companyId}','${fieldValue(bean:summary, field:'companyName')}')">${fieldValue(bean:summary, field:'companyName')}</a></td>
                     <td>${fieldValue(bean:summary, field:'amount')}</td>
                     <td>${fieldValue(bean:summary, field:'totalPrice')}</td>
                 </tr>
@@ -86,7 +86,7 @@
 
 
         </table>
-
+<g:render template="../report/list_trace_table"/>
 
 </body>
 </html>

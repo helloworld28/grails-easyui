@@ -29,5 +29,23 @@ environments {
             url = "jdbc:mysql://localhost:3306/sparetrace?autoreconnect=true"
         }
     }
-
+    production {
+        dataSource {
+            dbCreate = "update"
+            url = "jdbc:mysql://120.25.26.42:3306/sparetrace?autoreconnect=true"
+           username="fd"
+            password="fd"
+            pooled = true
+            properties {
+                maxActive = -1
+                minEvictableIdleTimeMillis=1800000
+                timeBetweenEvictionRunsMillis=1800000
+                numTestsPerEvictionRun=3
+                testOnBorrow=true
+                testWhileIdle=true
+                testOnReturn=true
+                validationQuery="SELECT 1"
+            }
+        }
+    }
 }
