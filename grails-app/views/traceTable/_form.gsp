@@ -14,19 +14,7 @@
 		
 		<div class="row-input">
 			<label for="company"><g:message code="traceTable.company"/></label>
-			<e:combogrid
-					name="company"
-					width="300px"
-					url="${createLink(controller: 'company', action:'list.json')}"
-					idField="id"
-					textField="name"
-					fitColumns="true"
-					remote="true"
-					required="true"
-					columns="js:[[
-					{field:'id', title:'id', width:20},
-					{field:'name', title:'公司', width:250}
-				]]"/>
+			<input id="company" class="easyui-combobox" style="width: 200px" width="100px" name="company" />
 		</div>
 
 		<div class="row-input">
@@ -97,5 +85,25 @@
 		<div class="row-buttons">
 			<e:linkbutton id="btn-save" iconCls="icon-ok"><g:message code="default.button.save.label" /></e:linkbutton>  			
 		</div>			
-	</form>		
+	</form>
+	<script>
+        $(document).ready(function () {
+            $('#company').combobox({
+                url:'<g:createLink controller="company" action="listAll"/>',
+                valueField:'id',
+                textField:'name',
+                filter: function(q, row){
+                    var opts = $(this).combobox('options');
+                    return row[opts.textField].indexOf(q) > -1;
+                },
+                onLoadSuccess:function () {
+                    $('#company').combobox('setValue', '${params.company}');
+                }
+            });
+
+
+
+        });
+
+	</script>
 </e:window>
