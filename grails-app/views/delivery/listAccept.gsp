@@ -54,7 +54,17 @@
 					columns:[[
 						{field:'id',title:'id', hidden:true,width:80},
 						{field:'traceTable_company_name',title:'分公司', width:150},
+						{field:'traceTable_contractNo',title:'合同号', width:80},
 						{field:'traceTable_spare_number',title:'易损件编号', width:80},
+						{field:'traceTable_spare_category',title:'品类', width:60},
+						{field:'traceTable_spare_zljxh',title:'制粒机型号', width:80},
+						{field:'traceTable_spare_material',title:'材质 ', width:60},
+						{field:'traceTable_spare_radius',title:'孔径 ', width:50},
+						{field:'traceTable_orderAmount',title:'数量 ', width:60},
+						{field:'traceTable_orderPrice',title:'单价 ', width:80},
+						{field:'traceTable_orderPrice1',title:'金额 ', width:80,formatter: function(value,row,index){
+                            return row.traceTable_orderAmount * row.traceTable_orderPrice;
+                        }},
 						{field:'deliveryTime',title:'<g:message code="delivery.deliveryTime"/>', width:80},
 						{field:'deliveryNumber',title:'<g:message code="delivery.deliveryNumber"/>', width:80},
 						{field:'deliverAmount',title:'<g:message code="delivery.deliverAmount"/>', width:80},
@@ -106,16 +116,7 @@
 		</div>
 		<e:datagrid id="grid" idField="id" fit="true" fitColumns="true" pagination="true" toolbar="#tb" 
 			url="${createLink(action:'listAccept.json')}" >
-			<e:columns>
-				<e:column field="ck" checkbox="true" />  						
-				<e:column field="id" hidden="true" width="16"></e:column>
-				<e:column field="traceTable_company_name" sortable="true" width="16">分公司</e:column>
-				<e:column field="traceTable_spare_number" sortable="true" width="16">易损件编号</e:column>
-				<e:column field="deliveryTime" sortable="true" width="16"><g:message code="delivery.deliveryTime"/></e:column>
-				<e:column field="deliveryNumber" sortable="true" width="16"><g:message code="delivery.deliveryNumber"/></e:column>  						
-				<e:column field="deliverAmount" sortable="true" width="16"><g:message code="delivery.deliverAmount"/></e:column>  						
-				<e:column field="state" sortable="true" width="16" ><g:message code="delivery.state"/></e:column>
-			</e:columns>			
+
 		</e:datagrid>
 				
 		<g:render template="form1"/>

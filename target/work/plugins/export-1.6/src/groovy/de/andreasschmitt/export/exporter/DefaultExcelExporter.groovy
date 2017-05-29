@@ -9,6 +9,8 @@ import jxl.format.Colour
  */
 class DefaultExcelExporter extends AbstractExporter {
 
+
+
     protected void exportData(OutputStream outputStream, List data, List fields) throws ExportingException{
         try {
             def builder = new ExcelBuilder()
@@ -76,6 +78,9 @@ class DefaultExcelExporter extends AbstractExporter {
                         }
                     }
                 }
+
+
+
             }
 
             builder.write()

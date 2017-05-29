@@ -3,6 +3,7 @@
 class ExportConfig {
 
   static Map exporters = [excelExporter: "de.andreasschmitt.export.exporter.DefaultExcelExporter",
+                          excelwithsheetsExporter: "de.andreasschmitt.export.exporter.ManySheetExcelExporter",
                           csvExporter: "de.andreasschmitt.export.exporter.DefaultCSVExporter",
                           xmlExporter: "de.andreasschmitt.export.exporter.DefaultXMLExporter",
                           pdfExporter: "de.andreasschmitt.export.exporter.DefaultPDFExporter",

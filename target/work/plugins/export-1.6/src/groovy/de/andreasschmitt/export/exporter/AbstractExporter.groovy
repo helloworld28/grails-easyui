@@ -10,7 +10,7 @@ abstract class AbstractExporter implements Exporter {
 	Map labels = [:]
 	Map formatters = [:]
 	Map parameters = [:]
-	
+	Object[] otherParametes = []
 	public void export(OutputStream outputStream, List data) throws ExportingException {
 		if(exportFields?.size() > 0){
 			exportData(outputStream, data, exportFields)
@@ -19,7 +19,17 @@ abstract class AbstractExporter implements Exporter {
 			exportData(outputStream, data, ExporterUtil.getFields(data[0]))
 		}
 	}
-	
+
+	@Override
+	Object[] getOtherParameters() {
+		return otherParametes
+	}
+
+	void setOtherParameters(Object[] otherParameters){
+		this.otherParametes = otherParameters;
+	}
+
+
 	protected String getLabel(String field){
 		if(labels.containsKey(field)){
 			return labels[field]

@@ -53,6 +53,7 @@ class DeliveryController {
 			if(params.value){
 				like(params.field, "%"+params.value+"%")
 			}
+			order("deliveryTime", 'desc')
 		}
 
 		respond( [rows: results, total: results.getTotalCount()] )

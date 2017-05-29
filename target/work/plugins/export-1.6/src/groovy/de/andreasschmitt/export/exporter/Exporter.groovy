@@ -14,6 +14,8 @@ interface Exporter {
 	Map getFormatters()
 	void setParameters(Map parameters)
 	Map getParameters()
+	void setOtherParameters(Object[] objects)
+	Object[] getOtherParameters()
 	
 	void export(OutputStream outputStream, List data) throws ExportingException
 	
