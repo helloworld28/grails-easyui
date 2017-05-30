@@ -27,6 +27,8 @@ class TraceTableController {
         params.max = params.max == null ? 20 : params.max
         params.offset = ((params.page as Integer) - 1) * params.max
 
+        def spareList = getSpareParam()
+
         def c = TraceTable.createCriteria()
         def results = c.list(max: params.max, offset: params.offset) {
             if (params.value) {
@@ -46,6 +48,11 @@ class TraceTableController {
             if (params.spareId) {
                 eq("spare", Spare.get(params.spareId))
             }
+
+            if(spareList){
+                'in'("spare", spareList)
+            }
+
             if(params.startTime){
                 String[] patern = new String[1];
                 patern[0] = "yyyy-MM-dd";
@@ -73,6 +80,24 @@ class TraceTableController {
             return new String(new String(str.getBytes("ISO-8859-1"), "UTF-8"))
         }
         return str;
+    }
+
+    def getSpareParam(){
+        def spareList
+        if (params.category || params.zljxh){
+
+            def spareCriteria = Spare.createCriteria()
+            spareList = spareCriteria.list {
+                if(params.category){
+                    eq("category", transform(params.category))
+                }
+                if(params.zljxh){
+                    eq("zljxh", transform(params.zljxh))
+                }
+
+            }
+        }
+        return spareList
     }
 
     @Transactional

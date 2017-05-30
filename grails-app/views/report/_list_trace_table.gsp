@@ -30,15 +30,11 @@
         });
     });
     function showDetails(companyName) {
-        var url = '<g:createLink controller="traceTable" action="list.json"/>' + '?field=company&value=' + companyName;
-//        var startTime = $('input[name=startTime]').val();
-//        var endTime = $('input[name=endTime]').val();
-//        if (startTime) {
-//            url = url + '&startTime=' + startTime;
-//        }
-//        if (endTime) {
-//            url = url + '&endTime=' + endTime;
-//        }
+        var category = $('#category').combobox('getValue');
+        var zljxh = $('#zljxh').combobox('getValue');
+        var url = '<g:createLink controller="traceTable" action="list.json"/>' + '?field=company&value=' + companyName
+        +'&category='+category+"&zljxh="+zljxh;
+
         openDetailDialog(url)
     }
     function showDetailsByCompanyIdAndSpareNumber(companyId, spareNumber) {

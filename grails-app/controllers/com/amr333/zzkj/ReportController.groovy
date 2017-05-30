@@ -19,13 +19,26 @@ class ReportController {
     def summary() {
         def summaryList
         def companyMap
+        def spareList = getSpareParam()
         if (params.startTime) {
 
+
+
             Date startTime = dateFormat.parse(params.startTime)
+
             Date endTime = params.endTime ? dateFormat.parse(params.endTime) : new Date()
             endTime = DateUtils.addDays(endTime, 1);
 
-            List < TraceTable > traceTableList = TraceTable.findAllByOrderDateBetween(startTime, endTime)
+            def criteria = TraceTable.createCriteria();
+            def traceTableList = criteria.list (){
+                  between("orderDate", startTime, endTime)
+                if(spareList){
+
+                    'in'("spare", spareList)
+                }
+
+            }
+
 
             Map<String, Summary> map = new HashMap<>()
             traceTableList.each { TraceTable traceTable ->
@@ -56,6 +69,7 @@ class ReportController {
         session.setAttribute("totalPrice", totalPrice)
         session.setAttribute("startTime", params.startTime)
         session.setAttribute("endTime", params.endTime)
+        session.setAttribute("spareList", spareList)
         [summaryList: summaryList, totalAmount: totalAmount, totalPrice: totalPrice]
     }
 
@@ -78,40 +92,66 @@ class ReportController {
 
         sheetMap.put("fields", fields);
         sheetMap.put("labels", labels);
-        sheetMap.put("parameters",parameters)
+        sheetMap.put("parameters", parameters)
         sheetMap.put("datas", summaryList.toList())
         def otherParameters = new Object[1]
-       otherParameters[0] =  sheetMap
+        otherParameters[0] = sheetMap
         def sheets = buildDetailSheets()
         exportService.export("excelWithSheets", response.outputStream, summaryList.toList(), fields, labels, [:], parameters, sheets)
 
 
     }
+    def getSpareParam(){
+        def spareList
+        if (params.category || params.zljxh){
 
-    private Object[] buildDetailSheets(){
-        List fields = ["spare_number", "companyName", "contractNo","category","zljxh","material","radius","spareNumber","orderDate","orderPrice","deliveryedAmount","deliveryedTime"]
-        Map labels = ["spare_number":"易损件型号", "companyName":"公司名称", "contractNo":"合同号","category":"品类",
-                      "zljxh":"制粒机型号","material":"材料","radius":"孔径","spareNumber":"生产编号",
-                      "orderDate":"订单日期","orderPrice":"报价","deliveryedAmount":"已发数量","deliveryedTime":"发货时间"]
+            def spareCriteria = Spare.createCriteria()
+            spareList = spareCriteria.list {
+                if(params.category){
+                    eq("category", params.category)
+                }
+                if(params.zljxh){
+                    eq("zljxh", params.zljxh)
+                }
+
+            }
+        }
+        return spareList
+    }
+
+    private Object[] buildDetailSheets() {
+        List fields = ["spare_number", "companyName", "contractNo", "category", "zljxh", "material", "radius", "spareNumber", "orderDate", "orderPrice", "deliveryedAmount", "deliveryedTime"]
+        Map labels = ["spare_number": "易损件型号", "companyName": "公司名称", "contractNo": "合同号", "category": "品类",
+                      "zljxh"       : "制粒机型号", "material": "材料", "radius": "孔径", "spareNumber": "生产编号",
+                      "orderDate"   : "订单日期", "orderPrice": "报价", "deliveryedAmount": "已发数量", "deliveryedTime": "发货时间"]
 
 
-        def  summaryList = session.summaryList
-        def startTimeStr =  session.getAttribute("startTime")
+        def summaryList = session.summaryList
+        def startTimeStr = session.getAttribute("startTime")
         def endTimeStr = session.getAttribute("endTime")
         Date startTime = dateFormat.parse(startTimeStr)
-        Date endTime =endTimeStr ? dateFormat.parse(endTimeStr) : new Date()
+        Date endTime = endTimeStr ? dateFormat.parse(endTimeStr) : new Date()
         endTime = DateUtils.addDays(endTime, 1);
 
         def sheets = new Object[summaryList.size()];
 
-
+        def spareList = session.getAttribute("spareList")
 
 
         int i = 0;
-        summaryList.each {summary ->
+        summaryList.each { summary ->
             Company company = Company.findByName(summary.companyName);
 
-            List < TraceTable > traceTableList = TraceTable.findAllByCompanyAndOrderDateBetween(company, startTime, endTime)
+
+            def criteria = TraceTable.createCriteria();
+            def traceTableList = criteria.list (){
+                eq('company', company)
+                between("orderDate", startTime, endTime)
+                if(spareList){
+                    'in'("spare", spareList)
+                }
+
+            }
             List<TraceDetailForExport> detailList = new ArrayList<>()
             traceTableList.each { traceTable ->
                 TraceDetailForExport detail = new TraceDetailForExport();
@@ -130,14 +170,14 @@ class ReportController {
             sheetMap.put("labels", labels);
             sheetMap.put("titles", [String.format("公司：%s ，数量：%s, 总价：%s", company.getName(), summary.amount.toString(), summary.totalPrice.toString())])
             sheetMap.put("header.rows", "3")
-            sheetMap.put("column.widths", [0.3, 0.2, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.1, 0.2, 0.2,0.2])
+            sheetMap.put("column.widths", [0.3, 0.2, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.1, 0.2, 0.2, 0.2])
 
             sheetMap.put("datas", detailList.toList())
             sheets[i++] = sheetMap
 
         }
 
-       return sheets;
+        return sheets;
     }
 
 

@@ -32,6 +32,29 @@
     });
 
 </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#zljxh').combobox({
+                url:'<g:createLink controller="spare" action="listZljxh"/>',
+                valueField:'code',
+                textField:'code',
+                filter: function(q, row){
+                    var opts = $(this).combobox('options');
+                    return row[opts.textField].indexOf(q) > -1;
+                },
+                onLoadSuccess:function () {
+                    $('#zljxh').combobox('setValue', '${params.zljxh}');
+                    $('#category').combobox('setValue', '${params.category}');
+                }
+            });
+
+
+
+        });
+
+    </script>
+
 </head>
 
 <body>
@@ -39,7 +62,15 @@
 <div id="tb" class="scaffoldbar">
 
     <form action="<g:createLink controller="report" action="summary"/>" method="POST">
-    <table><tr><td width="80">下单日期</td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
+    <table><tr>
+        <td>品类：<select name="category" id="category" class="easyui-combobox">
+            <option value="">--全部--</option>
+            <option value="环模">环模</option>
+            <option value="压轮">压轮</option>
+        </select> </td>
+        <td>制粒机型号：<input name="zljxh" id="zljxh"  class="easyui-combobox" /> </td>
+
+        <td width="80">下单日期<span style="color: red">*</span></td><td><input  class="easyui-datebox"  type="text" name="startTime"  value="${params?.startTime}"/></td><td>至</td><td><input class="easyui-datebox" name="endTime" value="${params?.endTime}"/></td>
         <td><input type="submit" id="btn-query" value="查询" /></td>
         <td><input type="button" id="btn-export" value="导出结果" /></td>
     </tr></table>

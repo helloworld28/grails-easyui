@@ -1,6 +1,7 @@
 package com.amr333.zzkj
 
 import com.google.gson.Gson
+import grails.converters.JSON
 import grails.transaction.Transactional
 import org.apache.commons.lang.StringUtils
 
@@ -56,6 +57,17 @@ class SpareController {
         }
 
         respond([rows: results, total: results.getTotalCount()])
+    }
+
+    def listZljxh(){
+       def spares =  Spare.executeQuery("select distinct  a.zljxh as value from Spare a")
+
+        List<Map> list = new ArrayList<>()
+        spares.each {
+            Map map = Collections.singletonMap("code", it)
+            list.add(map)
+        }
+        render list as JSON
     }
 
 
