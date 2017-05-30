@@ -31,11 +31,30 @@
            }
         });
 
-       $('#company').combogrid('setValue', '${params.company}');
 
     });
 
 </script>
+    <script>
+        $(document).ready(function () {
+            $('#company').combobox({
+                url:'<g:createLink controller="company" action="listAll"/>',
+                valueField:'id',
+                textField:'name',
+                filter: function(q, row){
+                    var opts = $(this).combobox('options');
+                    return row[opts.textField].indexOf(q) > -1;
+                },
+                onLoadSuccess:function () {
+                    $('#company').combobox('setValue', '${params.company}');
+                }
+            });
+
+
+
+        });
+
+    </script>
 </head>
 
 <body>
@@ -43,20 +62,9 @@
 <div id="tb" class="scaffoldbar">
 
     <form action="<g:createLink controller="reportCompanyAndSpare" action="summary"/>" method="POST">
-            <table><tr><td><e:combogrid
-                    name="company"
-                    id="company"
-                    width="250px"
-                    url="${createLink(controller: 'company', action:'list.json')}"
-                    idField="id"
-                    textField="name"
-                    fitColumns="true"
-                    remote="true"
-                    required="true"
-                    columns="js:[[
-					{field:'id', title:'id', width:20},
-					{field:'name', title:'分公司', width:230}
-				]]"/></td>
+            <table><tr><td>
+                <input id="company" class="easyui-combobox" style="width: 200px" width="100px" name="company" />
+            </td>
                 <td>
 
                     <input name="spare" id="spare" type="hidden" value="${params?.spare}" readonly="true"/>
