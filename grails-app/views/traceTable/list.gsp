@@ -115,6 +115,7 @@
 				<e:column field="orderPrice" sortable="true" width="7">报价</e:column>
 				<e:column field="deliveryedAmount" sortable="true" width="7"><g:message code="traceTable.deliveryedAmount"/></e:column>
 				<e:column field="notDevliveryedAmout" sortable="true" width="7"><g:message code="traceTable.notDevliveryedAmout"/></e:column>
+				<e:column field="deliveryedTime" sortable="true" width="7">发货时间</e:column>
 			</e:columns>
 		</e:datagrid>
 		<!--添加跟踪表表单-->

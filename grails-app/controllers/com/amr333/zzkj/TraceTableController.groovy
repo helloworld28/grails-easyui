@@ -109,6 +109,13 @@ class TraceTableController {
         if (params.endUseTime != "") {
             traceTableInstance.endUseTime = timeFormatter.parse(params.endUseTime)
         }
+
+
+        def delivery = Delivery.findByTraceTable(traceTableInstance)
+        if(delivery){
+            traceTableInstance.setDeliveryedTime(delivery.deliveryTime)
+        }
+
         traceTableInstance.clearErrors()
         def errors = save(traceTableInstance)
         if (errors) {

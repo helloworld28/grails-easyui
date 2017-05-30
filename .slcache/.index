@@ -8200,3 +8200,8 @@ n:799:sl/org/objectweb/asm/tree/MultiANewArrayInsnNode
 n:3723:org/apache/commons/beanutils/BeanUtils
 n:1691:org/apache/catalina/Session
 n:225:org/apache/catalina/SessionListener
+y:2849:org/springframework/core/$Proxy16
+y:15735:org/apache/catalina/connector/Connector
+y:24873:org/apache/catalina/deploy/NamingResources
+y:3036:org/apache/tomcat/util/net/SSLImplementation
+n:2382:Expression$ab6f22ec$3a4c$4f11$a67e$ce1ac3661de6

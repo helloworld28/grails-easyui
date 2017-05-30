@@ -13,6 +13,8 @@ class TraceTable {
     //发货信息
     Integer deliveryedAmount
     Integer notDevliveryedAmout
+    //记录最新的发货时间
+    Date deliveryedTime
 
     static hasMany = [deliverys : Delivery]
     static belongsTo = [spare: Spare, company: Company]
@@ -34,6 +36,7 @@ class TraceTable {
         orderPrice(blank:false)
         deliveryedAmount(blank:false)
         notDevliveryedAmout(blank:false)
+        deliveryedTime(blank:false,nullable: true)
 
 
         beginUseTime(blank:true,nullable: true)

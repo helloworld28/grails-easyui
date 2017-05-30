@@ -20,7 +20,8 @@
                 {field: 'orderDate', title: '下单时间', width: 100},
                 {field: 'orderAmount', title: '订单数量', width: 100, align: 'right'},
                 {field: 'orderPrice', title: '报价', width: 100, align: 'right'},
-                {field: 'deliveryedAmount', title: '已发数量', width: 100, align: 'right'}
+                {field: 'deliveryedAmount', title: '已发数量', width: 100, align: 'right'},
+                {field: 'deliveryedTime', title: '发货时间', width: 120}
             ]],
             pagination: true,
             autoRowHeight: true,

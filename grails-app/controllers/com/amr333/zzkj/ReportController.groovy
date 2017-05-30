@@ -1,6 +1,5 @@
 package com.amr333.zzkj
 
-import org.apache.catalina.Session
 import org.apache.commons.beanutils.BeanUtils
 import org.apache.commons.lang.time.DateUtils
 
@@ -83,26 +82,22 @@ class ReportController {
         sheetMap.put("datas", summaryList.toList())
         def otherParameters = new Object[1]
        otherParameters[0] =  sheetMap
-        buildDetailSheets()
-        exportService.export("excelWithSheets", response.outputStream, summaryList.toList(), fields, labels, [:], parameters, otherParameters)
-//        }
-//
-//        [ bookInstanceList: Company.list( params ) ]
+        def sheets = buildDetailSheets()
+        exportService.export("excelWithSheets", response.outputStream, summaryList.toList(), fields, labels, [:], parameters, sheets)
 
 
     }
 
     private Object[] buildDetailSheets(){
-        List fields = ["spare_number", "companyName", "contractNo","category","zljxh","material","radius","spareNumber","orderDate","orderPrice","deliveryedAmount"]
+        List fields = ["spare_number", "companyName", "contractNo","category","zljxh","material","radius","spareNumber","orderDate","orderPrice","deliveryedAmount","deliveryedTime"]
         Map labels = ["spare_number":"易损件型号", "companyName":"公司名称", "contractNo":"合同号","category":"品类",
                       "zljxh":"制粒机型号","material":"材料","radius":"孔径","spareNumber":"生产编号",
-                      "orderDate":"订单日期","orderPrice":"报价","deliveryedAmount":"已发数量"]
-        Map parameters = ["titles": "", "header.rows": "3", "column.widths": [0.4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]]
+                      "orderDate":"订单日期","orderPrice":"报价","deliveryedAmount":"已发数量","deliveryedTime":"发货时间"]
 
 
-        List  summaryList = session.summaryList
-        String startTimeStr =  session.getAttribute("startTime")
-        String endTimeStr = session.setAttribute("endTime")
+        def  summaryList = session.summaryList
+        def startTimeStr =  session.getAttribute("startTime")
+        def endTimeStr = session.getAttribute("endTime")
         Date startTime = dateFormat.parse(startTimeStr)
         Date endTime =endTimeStr ? dateFormat.parse(endTimeStr) : new Date()
         endTime = DateUtils.addDays(endTime, 1);
@@ -110,44 +105,38 @@ class ReportController {
         def sheets = new Object[summaryList.size()];
 
 
+
+
         int i = 0;
         summaryList.each {summary ->
             Company company = Company.findByName(summary.companyName);
 
             List < TraceTable > traceTableList = TraceTable.findAllByCompanyAndOrderDateBetween(company, startTime, endTime)
-            List<Detail> detailList = new ArrayList<>()
+            List<TraceDetailForExport> detailList = new ArrayList<>()
             traceTableList.each { traceTable ->
-                Detail detail = new Detail();
+                TraceDetailForExport detail = new TraceDetailForExport();
 
-                BeanUtils.copyProperties(detail, traceTable);
+                BeanUtils.copyProperties(detail, traceTable)
+                BeanUtils.copyProperties(detail, traceTable.spare)
+                detail.setCompanyName(traceTable.company.name)
+                detail.setSpare_number(traceTable.spare.number)
                 detailList.add(detail)
             }
-
-
-            String spare_number;
-            String companyName;
-            String contractNo;
-            String category;
-            String zljxh;
-            String material;
-            String radius;
-            String spareNumber;
-            String orderDate;
-            String orderPrice;
-            String deliveryedAmount;
 
 
             Map sheetMap = new HashMap()
             sheetMap.put("sheetName", summary.companyName)
             sheetMap.put("fields", fields);
             sheetMap.put("labels", labels);
-            sheetMap.put("parameters",parameters)
+            sheetMap.put("titles", [String.format("公司：%s ，数量：%s, 总价：%s", company.getName(), summary.amount.toString(), summary.totalPrice.toString())])
+            sheetMap.put("header.rows", "3")
+            sheetMap.put("column.widths", [0.3, 0.2, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.1, 0.2, 0.2,0.2])
+
             sheetMap.put("datas", detailList.toList())
             sheets[i++] = sheetMap
 
         }
 
-        println sheets;
        return sheets;
     }
 

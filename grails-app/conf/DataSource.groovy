@@ -20,7 +20,7 @@ environments {
             dbCreate = "update"
             username = "root"
             password = "admin"
-            url = "jdbc:mysql://localhost:3306/sparetrace?autoreconnect=true"
+            url = "jdbc:mysql://localhost:3306/db_cpm?autoreconnect=true"
         }
     }
     test {

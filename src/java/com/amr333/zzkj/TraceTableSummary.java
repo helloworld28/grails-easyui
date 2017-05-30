@@ -21,7 +21,7 @@ public class TraceTableSummary {
 
     public void sum(Integer amount, BigDecimal price){
         this.amount += amount;
-        this.totalPrice = totalPrice.add(price);
+        this.totalPrice = totalPrice.add(price.multiply(BigDecimal.valueOf(amount)));
     }
 
     public String getCompanyName() {
