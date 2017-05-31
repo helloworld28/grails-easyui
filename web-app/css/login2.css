@@ -34,7 +34,7 @@ input::-ms-clear {
 	position:relative;
 }
 .header {
-	height:50px;
+	height:110px;
 	border-bottom:1px solid #e2e2e2;
 	position:relative;
 	font-family:"Microsoft Yahei";
@@ -75,7 +75,7 @@ input::-ms-clear {
 #switch_bottom {
 	position:absolute;
 	bottom:-1px;_bottom:-2px;
-	border-bottom:2px solid #848484;
+	border-bottom:2px solid #fff;
 }
 
 .web_login {

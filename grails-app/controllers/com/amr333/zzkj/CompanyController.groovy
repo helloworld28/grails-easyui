@@ -1,5 +1,7 @@
 package com.amr333.zzkj
 
+import grails.converters.JSON
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -19,6 +21,11 @@ class CompanyController {
 		}
 
 		respond( [rows: Company.list(params), total: Company.count()] )
+	}
+
+	def listAll() {
+
+		render  Company.list() as JSON
 	}
 
 	def show(Company companyInstance) {

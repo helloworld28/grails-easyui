@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="${resource(dir:'js', file:'jquery-1.9.0.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir:'images',file:'login.js')}"></script>
-<link href="${resource(dir:'css',file:'login2.css')}" rel="stylesheet" type="text/css" />
+<link href="${resource(dir:'css',file:'login2.css')}?v=2" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <h1>易损件跟踪管理系统<sup></sup></h1>
@@ -12,8 +12,10 @@
 <div class="login" style="margin-top:50px;">
     
     <div class="header">
-        <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
-		<div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+        <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7"></a>
+		<div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 10px;">
+            <img width="200px" src="${resource(dir:'images',file:'logo.jpg')}">
+        </div>
         </div>
     </div>    
   
